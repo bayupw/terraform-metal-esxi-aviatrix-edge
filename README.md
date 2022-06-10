@@ -5,8 +5,8 @@ This repository provides a Terraform code that deploys ESXi host in Equinix Meta
 - Provision ESXi host(s)
 - Set network to hybrid
 - Add VLANs to bond0 interface
-- Reserve public IP block
-- Create Metal Gateway for Internet access
+- Reserve a /29 public IP block (/29 is the minimum for Metal Gateway)
+- Create a Metal Gateway for Internet access
 
 The code provided is for demo purposes only.
 
@@ -17,11 +17,7 @@ Please make sure you have:
 - [Equinix Metal project](https://metal.equinix.com/developers/docs/accounts/projects/)
 - [Equinix Metal API key or authentication token](https://metal.equinix.com/developers/docs/accounts/users/#api-keys)
 
-To run this project, you will need to edit the terraform.tfvars file
-
-## Environment Variables
-
-To run this project, you will need to set the following environment variables
+To run this project, you will need to edit the terraform.tfvars file and set the following environment variables
 
 Variables | Description
 --- | ---
@@ -40,8 +36,6 @@ Go to the project directory
 ```bash
 cd terraform-metal-esxi-aviatrix-edge
 ```
-
-Update the terraform.tfvars file
 
 Set environment variables
 
