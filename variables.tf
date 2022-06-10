@@ -27,6 +27,12 @@ variable "billing" {
   default     = "hourly"
 }
 
+variable "esx_hostname" {
+  description = "VMware ESXi hostname"
+  type        = string
+  default     = "esx-edge-01"
+}
+
 variable "vlans" {
   description = "map of VLANs"
   type        = map(any)
@@ -38,23 +44,8 @@ variable "num_public_ip" {
   default     = 8 # 8 is the minimum required for Metal Gateway
 }
 
-variable "hosts" {
-  description = "map of ESXi hosts"
-  type        = map(any)
-}
-
 locals {
-
-  # Create map for adding VLANs to bond interface for each hosts
-  host_vlans = flatten([
-    for host, device in metal_device_network_type.esxi_hosts : [
-      for vlan in var.vlans : {
-        host_id = device.device_id
-        vlan_id = vlan.id
-      }
-    ]
-  ])
-
+  #esxcli to create PortGroups
   esxcli = <<EOF
   esxcli network vswitch standard portgroup add --portgroup-name="Internet-VLAN${var.vlans.internet_vlan.id}" --vswitch-name="vSwitch0"
   esxcli network vswitch standard portgroup set --portgroup-name="Internet-VLAN${var.vlans.internet_vlan.id}" --vlan-id=${var.vlans.internet_vlan.id}
