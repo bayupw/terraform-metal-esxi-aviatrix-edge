@@ -4,7 +4,7 @@ This repository provides a Terraform code that deploys ESXi host in Equinix Meta
 - Create VLANs
 - Provision ESXi host(s)
 - Set network to hybrid
-- Add VLans to bond0 interface
+- Add VLANs to bond0 interface
 - Reserve public IP block
 - Create Metal Gateway for Internet access
 
