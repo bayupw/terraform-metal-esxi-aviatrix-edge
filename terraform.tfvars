@@ -18,7 +18,7 @@ vlans = {
     description = "Edge WAN VLAN"
   }
   edge_lan_vlan = {
-    id          = "12",
+    id          = "12"
     description = "Edge LAN VLAN"
   }
   vm_vlan = {
