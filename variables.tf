@@ -36,6 +36,29 @@ variable "esx_hostname" {
 variable "vlans" {
   description = "map of VLANs"
   type        = map(any)
+
+  default = {
+    internet_vlan = {
+      id          = "255"
+      description = "Internet VLAN"
+    }
+    edge_mgt_vlan = {
+      id          = "10"
+      description = "Edge Management VLAN"
+    }
+    edge_wan_vlan = {
+      id          = "11"
+      description = "Edge WAN VLAN"
+    }
+    edge_lan_vlan = {
+      id          = "12"
+      description = "Edge LAN VLAN"
+    }
+    vm_vlan = {
+      id          = "13"
+      description = "Virtual Machine VLAN"
+    }
+  }
 }
 
 variable "num_public_ip" {
