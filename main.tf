@@ -37,7 +37,7 @@ resource "equinix_metal_vlan" "this" {
 resource "equinix_metal_port_vlan_attachment" "this" {
   for_each = var.vlans
 
-  device_id = metal_device_network_type.this.device_id
+  device_id = equinix_metal_device_network_type.this.device_id
   port_name = "bond0"
   vlan_vnid = each.value.id
 
