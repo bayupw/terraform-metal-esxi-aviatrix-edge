@@ -1,10 +1,10 @@
 # Retrieve Equinix Metal project data
-data "metal_project" "this" {
+data "equinix_metal_project" "this" {
   name = var.metal_project_name
 }
 
 # Provision ESXi host
-resource "metal_device" "this" {
+resource "equinix_metal_device" "this" {
   hostname         = var.esx_hostname
   plan             = var.plan
   metro            = var.metro
@@ -14,7 +14,7 @@ resource "metal_device" "this" {
 }
 
 # Set Network to Hybrid
-resource "metal_device_network_type" "this" {
+resource "equinix_metal_device_network_type" "this" {
   device_id = metal_device.this.id
   type      = "hybrid"
 
@@ -22,7 +22,7 @@ resource "metal_device_network_type" "this" {
 }
 
 # Create VLANs
-resource "metal_vlan" "this" {
+resource "equinix_metal_vlan" "this" {
   for_each = var.vlans
 
   metro       = var.metro
@@ -34,7 +34,7 @@ resource "metal_vlan" "this" {
 }
 
 # Add VLANs to bond0
-resource "metal_port_vlan_attachment" "this" {
+resource "equinix_metal_port_vlan_attachment" "this" {
   for_each = var.vlans
 
   device_id = metal_device_network_type.this.device_id
@@ -45,7 +45,7 @@ resource "metal_port_vlan_attachment" "this" {
 }
 
 # Reserve a Public IP block
-resource "metal_reserved_ip_block" "this" {
+resource "equinix_metal_reserved_ip_block" "this" {
   project_id = data.metal_project.this.id
   type       = "public_ipv4"
   metro      = var.metro
@@ -55,7 +55,7 @@ resource "metal_reserved_ip_block" "this" {
 }
 
 # Create a Metal Gateway
-resource "metal_gateway" "gateway" {
+resource "equinix_metal_gateway" "gateway" {
   project_id        = data.metal_project.this.id
   vlan_id           = metal_vlan.this["internet_vlan"].id
   ip_reservation_id = metal_reserved_ip_block.this.id
