@@ -41,7 +41,7 @@ resource "equinix_metal_port_vlan_attachment" "this" {
   port_name = "bond0"
   vlan_vnid = each.value.id
 
-  depends_on = [equinix_metal_device.this]
+  depends_on = [equinix_metal_device.this, equinix_metal_vlan.this]
 }
 
 # Reserve a Public IP block
