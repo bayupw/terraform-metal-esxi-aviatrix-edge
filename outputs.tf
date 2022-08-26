@@ -11,6 +11,7 @@ output "metal_device_ip" {
 output "metal_device_password" {
   description = "esxi password"
   value       = equinix_metal_device.this.root_password
+  sensitive   = true
 }
 
 output "metal_gateway_ip" {
