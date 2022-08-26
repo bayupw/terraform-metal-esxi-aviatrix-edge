@@ -1,6 +1,6 @@
-# Terraform to deploy VMware ESXi at Equinix Metal for Aviatrix Edge 1.0
+# Terraform to deploy VMware ESXi at Equinix Metal for Aviatrix Edge
 
-This repository provides a Terraform code that deploys ESXi host in Equinix Metal for hosting Aviatrix Secure Edge 1.0 VM
+This repository provides a Terraform code that deploys ESXi host in Equinix Metal for hosting Aviatrix Edge
 - Create VLANs
 - Provision ESXi host(s)
 - Set network to hybrid
